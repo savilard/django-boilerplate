@@ -1,0 +1,37 @@
+[flake8]
+show-source = True
+statistics = False
+doctests = True
+
+# Plugins:
+accept-encodings = utf-8
+max-complexity = 6
+max-line-length = 120
+use_class_attributes_order_strict_mode = True
+max_function_length = 50
+max-cognitive-complexity = 8
+max-annotations-complexity = 4
+
+# Excluding some directories:
+exclude =
+  .git
+  __pycache__
+  .venv
+  .eggs
+  *.egg
+  dist
+  manage.py
+  apps/*/migrations/*.py
+  apps/*/apps.py
+
+# Self settings:
+max-imports = 15
+
+ignore = D100, D104, D106, D401, X100, W504, RST303, RST304, DAR103, DAR203, WPS300
+
+per-file-ignores =
+  # Allow `__init__.py` with logic for configuration:
+  config/settings/*.py: WPS226, WPS407, WPS412, WPS432
+  apps/*/models.py: WPS306, WPS420, D105, WPS604
+  apps/*/admin.py: D101, WPS226
+  apps/*/forms.py: D101, WPS306, D101
