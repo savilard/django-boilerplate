@@ -33,11 +33,6 @@ ci:
     - GitHub
     - None
 
-github_ci_workflow:
-  type: str
-  help: Github Actions workflow name
-  when: "{{ ci == 'GitHub' }}"
-
 copyright_license:
   type: str
   help: Your project license
