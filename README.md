@@ -1,7 +1,16 @@
 # My django template
 
 ---
+## Contents
 
+<!-- TOC -->
+* [Purpose](#purpose)
+* [Features](#features)
+* [Installation](#installation)
+* [Resources](#resources)
+* [Issues](#issues)
+* [License](#license)
+<!-- TOC -->
 ## Purpose
 
 This project is used to scaffold a `django` project structure.
@@ -32,6 +41,15 @@ Then, create a project itself:
 ```shell
 copier gh:savilard/django-boilerplate project_folder_name
 ```
+
+
+## Resources
+
+Please consult the [Copier](https://copier.readthedocs.io/en/stable/) docs for more information.
+
+
+## Issues
+If you encounter any problems, please [file an issue](https://github.com/savilard/django-boilerplate/issues) along with a detailed description.
 
 
 ## License
