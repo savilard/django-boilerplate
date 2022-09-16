@@ -18,12 +18,25 @@ author_email:
   help: Your email
   placeholder: you@email.com
 
+github_username:
+  type: str
+  help: Your github name
+
+github_project_repo:
+  type: str
+  help: The name of the project repository on GitHub
+
 ci:
   type: str
   default: GitHub
   choices:
     - GitHub
     - None
+
+github_ci_workflow:
+  type: str
+  help: Github Actions workflow name
+  when: "{{ ci == 'GitHub' }}"
 
 copyright_license:
   type: str
