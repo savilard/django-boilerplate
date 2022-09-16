@@ -2,17 +2,81 @@
 
 {{ project_description }}
 
-## Installation
+{% if ci == "GitHub" %}![github actions](https://img.shields.io/github/workflow/status/{{ github_username }}/{{ github_project_repo }}/{{ github_ci_workflow }}?style=for-the-badge){% endif %}
+![python](https://img.shields.io/badge/python-3.9-brightgreen?style=for-the-badge)
+![license](https://img.shields.io/github/license/{{ github_username }}/{{ github_project_repo }}?style=for-the-badge)
+[![wemake-python-styleguide](https://img.shields.io/badge/style-wemake-000000.svg?style=for-the-badge)](https://github.com/wemake-services/wemake-python-styleguide)
 
-## Features
 
-## Example
+## Contents
+<!-- TOC -->
+* [Preparatory works](#preparatory-works)
+* [How to run the local version](#how-to-run-the-local-version)
+* [Environment variables](#environment-variables)
+* [How to run flake8](#how-to-run-flake8)
+* [How to run mypy](#how-to-run-mypy)
+<!-- TOC -->
 
 
-{% if copyright_license == "MIT" %}
+## Preparatory works
+1. Setup [docker](https://docs.docker.com/get-docker/) and [docker compose v2](https://docs.docker.com/compose/cli-command/#installing-compose-v2);
+2. Download the code:
+```shell
+git clone https://github.com/{{ github_username }}/{{ github_project_repo }}.git
+```
+3. Go to the project directory:
+```shell
+cd {{ github_project_repo }}
+```
 
-## LICENSE
 
-MIT
+## How to run the local version
 
-{% endif %}
+Start the docker containers:
+```shell
+docker compose up --build
+```
+
+In a new terminal tab, without shutting down the site, run the command:
+```shell
+docker-compose run --rm backend ./manage.py migrate
+```
+
+After launching migrations, create a superuser for access to the admin area:
+```shell
+docker-compose run --rm web ./manage.py createsuperuser
+```
+
+The site will be available at [127.0.0.1:8080](http://127.0.0.1:8080). Login to the admin area at [http://127.0.0.1:8080/admin/](http://127.0.0.1:8080/admin/).
+
+To fine-tune the site, use environment variables, as is common with Docker Compose. A list of available variables can be found inside the `docker-compose.yml` file.
+
+
+## Environment variables
+`SECRET_KEY` is Django's mandatory secret setting. This is salt for hash generation. The value can be anything, as long as it is not known to anyone. [Django documentation](https://docs.djangoproject.com/en/3.2/ref/settings/#secret-key).
+
+`DEBUG` -- Django setting to enable debug mode. Accepts `TRUE` or `FALSE`. [Django documentation](https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-DEBUG).
+
+`ALLOWED_HOSTS` -- a Django setting with a list of allowed addresses. If the request arrives at a different address, the site will respond with a 400 error. You can list multiple addresses separated by commas, such as `127.0.0.1,192.168.0.1,site.test`. [Django documentation](https://docs.djangoproject.com/en/3.2/ref/settings/#allowed-hosts).
+
+`DATABASE_URL` -- the address to connect to a PostgreSQL database. Other DBMS site does not support. [Record format](https://github.com/jacobian/dj-database-url#url-schema).
+
+`POSTGRES_PASSWORD` -- password from postgresql.
+
+
+## How to run flake8
+```shell
+docker compose run --rm backend sh -c "flake8"
+```
+
+
+## How to run mypy
+```shell
+docker compose run --rm backend sh -c "mypy apps"
+```
+
+
+## How to run pytest
+```shell
+docker compose run --rm backend sh -c "pytest"
+```
