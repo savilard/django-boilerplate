@@ -32,3 +32,7 @@ Then, create a project itself:
 ```shell
 copier gh:savilard/django-boilerplate project_folder_name
 ```
+
+
+## License
+MIT. See [LICENSE](https://github.com/savilard/django-boilerplate/blob/main/LICENSE) for more details.
