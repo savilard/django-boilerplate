@@ -1,6 +1,5 @@
 from djoser.views import UserViewSet as DjoserUserViewSet
 
-
 from apps.users.models import CustomUser
 
 

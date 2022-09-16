@@ -1,7 +1,7 @@
-from rest_framework.routers import SimpleRouter
-
 from django.urls import include
 from django.urls import path
+
+from rest_framework.routers import SimpleRouter
 
 from apps.users.api.viewsets import UserViewSet
 
