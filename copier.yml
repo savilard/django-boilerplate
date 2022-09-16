@@ -1,0 +1,52 @@
+# https://copier.readthedocs.io/en/stable/configuring/
+
+# Answers
+project_name:
+    type: str
+    help: What is your project name?
+
+project_description:
+  type: str
+  help: Your project description
+
+author_fullname:
+  type: str
+  help: Your full name
+
+author_email:
+  type: str
+  help: Your email
+  placeholder: you@email.com
+
+ci:
+  type: str
+  default: GitHub
+  choices:
+    - GitHub
+    - None
+
+copyright_license:
+  type: str
+  help: Your project license
+  default: MIT
+  choices:
+    - MIT
+    - None
+
+copyright_date:
+  type: int
+  help: The copyright date
+  default: 2022
+  when: "{{ copyright_license != 'None' }}"
+
+container_name_prefix:
+  type: str
+  help: Docker containers name prefix
+  default: "{{ project_name|lower|replace(' ', '-') }}"
+
+# Settings
+_min_copier_version: "6.1.0"
+_subdirectory: project
+_templates_suffix: .jinja
+_skip_if_exists:
+  - CHANGELOG.md

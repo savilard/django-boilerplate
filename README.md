@@ -18,3 +18,17 @@ Just like `django-admin.py startproject` but better.
 * [`flake8`](http://flake8.pycqa.org/en/latest/) and [`wemake-python-styleguide`](https://wemake-python-styleguide.readthedocs.io/en/latest/) for linting
 * [`docker`](https://www.docker.com/) for development
 * Custom [user model](https://docs.djangoproject.com/en/3.0/topics/auth/customizing/#specifying-a-custom-user-model)
+
+
+## Installation
+
+Firstly, you will need to install [dependencies](https://copier.readthedocs.io/en/stable/#installation):
+```shell
+pip install pipx
+pipx install copier
+```
+
+Then, create a project itself:
+```shell
+copier gh:savilard/django-boilerplate project_folder_name
+```

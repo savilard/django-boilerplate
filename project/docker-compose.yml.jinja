@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   backend:
-    container_name: app-backend
+    container_name: {{ container_name_prefix }}-backend
     restart: always
     build:
         context: .
@@ -30,7 +30,7 @@ services:
 
   db:
     image: postgres:14.4-alpine
-    container_name: app-db
+    container_name: {{ container_name_prefix }}-db
     restart: unless-stopped
     ports:
       - "5433:5432"
